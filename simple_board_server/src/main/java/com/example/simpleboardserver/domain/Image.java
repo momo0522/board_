@@ -19,9 +19,14 @@ public class Image {
     private Long id;
 
     private Long boardId;
-    private String writer;
 
     @Lob
     private byte[] image;
     private LocalDateTime createdAt;
+
+    public Image(Long boardId, byte[] image){
+        this.boardId = boardId;
+        this.image = image;
+        this.createdAt = LocalDateTime.now();
+    }
 }
