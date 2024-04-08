@@ -1,13 +1,15 @@
 package com.example.simpleboardserver.service;
 
 import com.example.simpleboardserver.domain.Board;
+import com.example.simpleboardserver.domain.Image;
 import com.example.simpleboardserver.dto.BoardRequestDto;
 import com.example.simpleboardserver.dto.BoardResponseDto;
+import com.example.simpleboardserver.dto.ImageRequestDto;
 import com.example.simpleboardserver.repository.BoardRepository;
+import com.example.simpleboardserver.repository.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final ImageRepository imageRepository;
 
     // 글 작성
     public String writing(BoardRequestDto dto) {
@@ -51,5 +54,14 @@ public class BoardService {
     public String deleteBoard(Long id) {
         boardRepository.deleteById(id);
         return "삭제 성공";
+    }
+
+    public String saveImage(ImageRequestDto dto){
+        imageRepository.save(dto.toImage());
+        return "저장 성공";
+    }
+
+    public Image getImage(Long boardId){
+        return imageRepository.findByBoardId(boardId).orElse(null);
     }
 }

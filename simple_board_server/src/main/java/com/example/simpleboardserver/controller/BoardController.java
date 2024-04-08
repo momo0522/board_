@@ -1,8 +1,10 @@
 package com.example.simpleboardserver.controller;
 
 import com.example.simpleboardserver.domain.Board;
+import com.example.simpleboardserver.domain.Image;
 import com.example.simpleboardserver.dto.BoardRequestDto;
 import com.example.simpleboardserver.dto.BoardResponseDto;
+import com.example.simpleboardserver.dto.ImageRequestDto;
 import com.example.simpleboardserver.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +43,16 @@ public class BoardController {
     @PutMapping("/view/{id}")
     public ResponseEntity<String> updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto dto){
         return ResponseEntity.ok(boardService.updateBoard(id, dto));
+    }
+
+    @PostMapping("/view/image")
+    public ResponseEntity<String> saveImage(@RequestBody ImageRequestDto dto){
+        return ResponseEntity.ok(boardService.saveImage(dto));
+    }
+
+    @GetMapping("/view/image/{boardId}")
+    public ResponseEntity<Image> getImage(@PathVariable Long boardId){
+        return ResponseEntity.ok(boardService.getImage(boardId));
+
     }
 }
