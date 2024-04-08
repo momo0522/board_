@@ -50,4 +50,4 @@ export function BoardPage() {
       <button onClick={editPost}>글 수정</button>
     </div>
   );
-};//https://support.google.com/youtube/?p=report_playback
+}
