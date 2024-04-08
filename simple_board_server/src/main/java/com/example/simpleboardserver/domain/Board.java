@@ -1,7 +1,7 @@
 package com.example.simpleboardserver.domain;
 
 import com.example.simpleboardserver.dto.BoardRequestDto;
-import com.example.simpleboardserver.dto.BoardResponseDto;
+import com.example.simpleboardserver.dto.BoardResponseListDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +26,8 @@ public class Board {
     private String content;
     private LocalDateTime createdAt;
 
-    public BoardResponseDto of() {
-        return BoardResponseDto.builder()
+    public BoardResponseListDto of() {
+        return BoardResponseListDto.builder()
                 .id(id)
                 .writer(writer)
                 .title(title)
